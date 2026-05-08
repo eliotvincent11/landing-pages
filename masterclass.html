@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masterclass — Pourquoi tu fais tout… sauf ce qui compte vraiment.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1C1410;
+      --ink-soft: #4A3B30;
+      --ink-lighter: #7A6A5E;
+      --accent: #8B3A4A;
+      --accent-light: #B5566A;
+      --dark-card-bg: #1E1108;
+      --dark-card-text: #F0EAD8;
+      --border: rgba(28,20,16,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 19px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header */
+    .site-header {
+      padding: 36px 32px 28px;
+      text-align: center;
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+    }
+
+    /* Hero */
+    .hero { padding: 48px 0 56px; }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      font-style: italic;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 22px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin-bottom: 40px;
+      max-width: 560px;
+    }
+
+    /* CTA Button */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 17px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 14px 28px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+    .btn-primary .arrow {
+      font-size: 18px;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    .btn-primary:hover .arrow { transform: translateX(3px); }
+
+    /* Divider */
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--border);
+      margin: 56px 0;
+    }
+
+    /* Section */
+    .section { padding: 56px 0; }
+
+    /* Accroche */
+    .accroche p {
+      font-size: 20px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+    .accroche p strong { color: var(--ink); font-weight: 500; }
+    .accroche p:last-child { margin-bottom: 0; }
+
+    /* Dark card */
+    .dark-card {
+      background: var(--dark-card-bg);
+      color: var(--dark-card-text);
+      border-radius: 6px;
+      padding: 48px 52px;
+      margin: 56px 0;
+    }
+    .dark-card .card-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(240,234,216,0.45);
+      margin-bottom: 22px;
+    }
+    .dark-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      color: var(--dark-card-text);
+    }
+    .dark-card h2 em { font-style: italic; color: #C4867A; }
+    .dark-card p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(240,234,216,0.7);
+    }
+
+    /* Section title small caps */
+    .section-title {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+      margin-bottom: 36px;
+    }
+
+    /* Arrow list */
+    .arrow-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .arrow-list li {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .arrow-list .arr {
+      color: var(--accent);
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .arrow-list .arr-text {
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .arrow-list .arr-text strong { color: var(--ink); font-weight: 500; }
+
+    /* Details grid */
+    .details-grid {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 24px;
+    }
+    .detail-label {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+      flex-shrink: 0;
+    }
+    .detail-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    /* Section heading */
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    .section-heading em { font-style: italic; color: var(--accent); }
+
+    /* Body text */
+    .body-text {
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .body-text:last-child { margin-bottom: 0; }
+    .body-text strong { color: var(--ink); font-weight: 500; }
+
+    /* Live note */
+    .live-note {
+      border-left: 2px solid var(--accent);
+      padding-left: 22px;
+      margin: 40px 0;
+    }
+    .live-note p {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+
+    /* Receive list */
+    .receive-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .receive-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+    .receive-list .icon {
+      color: var(--accent);
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .receive-list strong { color: var(--ink); font-weight: 500; }
+    .receive-list .desc { color: var(--ink-lighter); font-size: 17px; display: block; }
+
+    /* Testimonial */
+    .testimonial {
+      background: var(--dark-card-bg);
+      border-radius: 6px;
+      padding: 44px 52px;
+      margin: 56px 0 0;
+    }
+    .testimonial blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 26px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--dark-card-text);
+      margin-bottom: 24px;
+    }
+    .testimonial blockquote::before { content: '\201C'; font-size: 1.2em; color: #C4867A; margin-right: 2px; }
+    .testimonial blockquote::after  { content: '\201D'; font-size: 1.2em; color: #C4867A; margin-left: 2px; }
+    .testimonial cite {
+      font-style: normal;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240,234,216,0.45);
+    }
+
+    /* Pour toi box */
+    .pour-toi-box {
+      background: #EDE6D6;
+      border-radius: 6px;
+      padding: 44px 52px;
+      margin-bottom: 0;
+    }
+    .pour-toi-box p {
+      font-size: 19px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+    }
+
+    /* Footer CTA */
+    .footer-cta {
+      text-align: center;
+      padding: 64px 32px 80px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-cta .footer-sub {
+      font-size: 16px;
+      color: var(--ink-lighter);
+      margin-top: 14px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    .footer-cta .footer-sub span {
+      margin: 0 8px;
+      opacity: 0.4;
+    }
+
+    /* Sticky float button */
+    .sticky-cta {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 13px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      white-space: nowrap;
+      box-shadow: 0 4px 24px rgba(139,58,74,0.30);
+      transition: background 0.2s ease, transform 0.15s ease;
+      letter-spacing: 0.01em;
+    }
+    .sticky-cta:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+    }
+    .sticky-cta .arrow { font-size: 17px; display: inline-block; transition: transform 0.2s ease; }
+    .sticky-cta:hover .arrow { transform: translateX(3px); }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 22px; }
+      .dark-card, .testimonial, .pour-toi-box { padding: 32px 26px; }
+      .detail-row { flex-direction: column; gap: 4px; }
+      .detail-value { text-align: left; }
+      .sticky-cta { bottom: 18px; right: 16px; font-size: 15px; padding: 11px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">Eliot · Masterclass</header>
+
+  <main>
+
+    <!-- Hero -->
+    <div class="container">
+      <section class="hero">
+        <p class="hero-eyebrow reveal">Live · 16 mai 2026</p>
+        <h1 class="reveal" style="transition-delay:0.1s">
+          Pourquoi tu fais tout…<br>
+          <em>sauf ce qui compte vraiment.</em>
+        </h1>
+        <p class="hero-sub reveal" style="transition-delay:0.2s">
+          Une <strong style="color: var(--ink); font-weight:600;">masterclass live</strong> pour comprendre ce qui te bloque, et voir exactement ce qui te retient.
+        </p>
+        <a href="https://buy.stripe.com/bJebJ13hq66l3KE6jq4AU04" target="_blank" class="btn-primary reveal" style="transition-delay:0.3s">
+          Réserve ta place - 11€ <span class="arrow">→</span>
+        </a>
+      </section>
+    </div>
+
+    <!-- Accroche -->
+    <div class="container">
+      <div class="divider reveal"></div>
+      <section class="accroche section" style="padding-top:0">
+        <div class="reveal">
+          <p>Tu es quelqu'un qui avance. Tu crées, tu produis, tu as des projets. Tu es occupé.</p>
+          <p>Et pourtant.</p>
+          <p>Il y a cette chose, tu sais laquelle, que tu remets depuis des semaines, des mois, parfois des années. Pas parce que tu es paresseux. Pas parce que tu manques de temps. Mais parce qu'<strong>une part de toi fait tout pour ne pas y aller.</strong></p>
+          <p>Ce n'est pas un problème d'organisation. Ce n'est pas un problème de discipline. C'est quelque chose de plus profond que ça.</p>
+          <p>Et c'est exactement ce qu'on va ouvrir ensemble.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Dark card -->
+    <div class="container">
+      <div class="dark-card reveal">
+        <p class="card-label">La masterclass</p>
+        <h2>Pourquoi tu fais tout…<br><em>sauf ce qui compte vraiment.</em></h2>
+        <p>Une masterclass live de 1h30, avec une session de coaching en direct incluse.</p>
+      </div>
+    </div>
+
+    <!-- Tu vas repartir avec -->
+    <div class="container">
+      <section class="section">
+        <div class="reveal">
+          <p class="section-title">Tu vas repartir avec</p>
+          <ul class="arrow-list">
+            <li>
+              <span class="arr">→</span>
+              <span class="arr-text">La vraie raison pour laquelle tu évites les actions qui changeraient tout, <strong>pas la raison de surface, celle d'en dessous.</strong></span>
+            </li>
+            <li>
+              <span class="arr">→</span>
+              <span class="arr-text">Une compréhension de tes parts protectrices, ces <strong>mécanismes inconscients</strong> qui sabotent tes meilleures intentions.</span>
+            </li>
+            <li>
+              <span class="arr">→</span>
+              <span class="arr-text">Le shift qui permet de passer <strong>de la pression à l'action</strong>, sans te forcer, sans te battre contre toi-même.</span>
+            </li>
+            <li>
+              <span class="arr">→</span>
+              <span class="arr-text">Une <strong>vision claire de ce qui te bloque, toi.</strong></span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Les détails -->
+    <div class="container">
+      <div class="divider reveal"></div>
+      <section class="section" style="padding-top:0">
+        <div class="reveal">
+          <p class="section-title">Les détails</p>
+          <div class="details-grid">
+            <div class="detail-row">
+              <span class="detail-label">Date</span>
+              <span class="detail-value">Samedi 16 mai</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Heure</span>
+              <span class="detail-value">10h30</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Durée</span>
+              <span class="detail-value">1h30 + 15 min de Q&amp;A</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Replay</span>
+              <span class="detail-value">Inclus</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Prix</span>
+              <span class="detail-value">11€</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Live vs replay -->
+    <div class="container">
+      <div class="live-note reveal">
+        <p>Le replay te donnera les outils. Mais c'est en live que quelque chose peut vraiment bouger, parce que tu seras là, présent, dans l'espace. Et si tu as une question, tu peux la poser. Si quelque chose résonne, on peut aller plus loin ensemble.</p>
+      </div>
+    </div>
+
+    <!-- Ce que tu reçois -->
+    <div class="container">
+      <section class="section">
+        <div class="reveal">
+          <p class="section-title">Ce que tu reçois</p>
+          <ul class="receive-list">
+            <li>
+              <span class="icon">◆</span>
+              <span><strong>La masterclass complète + replay</strong><span class="desc">Revisione le contenu autant de fois que nécessaire.</span></span>
+            </li>
+            <li>
+              <span class="icon">◆</span>
+              <span><strong>Une session de coaching en direct</strong><span class="desc">Je travaille avec les volontaires, tu regardes ou tu participes.</span></span>
+            </li>
+            <li>
+              <span class="icon">◆</span>
+              <span><strong>Une méditation guidée</strong><span class="desc">Pour ancrer ce que tu as compris dans ton corps.</span></span>
+            </li>
+            <li>
+              <span class="icon">◆</span>
+              <span><strong>Un worksheet de journaling</strong><span class="desc">Pour continuer le travail après la session.</span></span>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Pourquoi moi -->
+    <div class="container">
+      <div class="divider reveal"></div>
+      <section class="section" style="padding-top:0">
+        <div class="reveal">
+          <h2 class="section-heading">Pourquoi moi ?</h2>
+          <p class="body-text">J'ai passé des années à faire exactement ça. Être occupé, avancer, créer, sans jamais toucher ce qui comptait vraiment. J'étais acteur. Je devenais bon. Mais les photos pro, l'agent, les vraies connexions, je les évitais. Je savais quoi faire. Et je ne le faisais pas.</p>
+          <p class="body-text">Ce n'était pas de la paresse. C'était une protection. Et le jour où j'ai compris ça, et eu de la compassion pour cette part de moi qui protégeait, tout a changé. C'est ce que je fais avec mes clients. C'est ce qu'on va faire ensemble.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="container">
+      <div class="testimonial reveal">
+        <blockquote>On se sent moins seule, et soutenue dans la vision qu'on veut réaliser.</blockquote>
+        <cite>Mathilde, écrivaine &amp; podcasteuse</cite>
+      </div>
+    </div>
+
+    <!-- C'est pour toi si… -->
+    <div class="container" style="margin-top: 32px;">
+      <section class="section">
+        <div class="reveal">
+          <h2 class="section-heading">C'est pour toi si…</h2>
+          <div class="pour-toi-box" id="reserve">
+            <p>Tu as déjà essayé les systèmes de productivité. Les to-do lists. Les routines. Et tu sais que le problème n'est pas là. Tu veux comprendre ce qui est vraiment en dessous.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer CTA -->
+    <footer class="footer-cta">
+      <div class="reveal">
+        <a href="https://buy.stripe.com/bJebJ13hq66l3KE6jq4AU04" target="_blank" class="btn-primary">
+          Je veux comprendre - 11€ <span class="arrow">→</span>
+        </a>
+        <p class="footer-sub">Replay complet inclus<br>Et si tu es là en live, tu peux participer, pas juste regarder.</p>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Sticky CTA -->
+  <a href="https://buy.stripe.com/bJebJ13hq66l3KE6jq4AU04" target="_blank" class="sticky-cta">
+    Réserve ta place <span class="arrow">→</span>
+  </a>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -30px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    setTimeout(() => {
+      document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
+    }, 50);
+  </script>
+
+</body>
+</html>
